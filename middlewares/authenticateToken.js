@@ -16,9 +16,9 @@ const authenticateToken = expressJwt({
 const errorHandler = (err, req, res, next) => {
     logger.error(err.message, { metadata: err }); // 记录错误到数据库
     if (err.name === 'UnauthorizedError') {
-        res.status(401).json({ error: 'Invalid token format. Expected format: Authorization: Bearer [token]' });
+        res.status(401).json({ error: "Token错误,无法识别和格式化"});
     } else {
-        res.status(500).json({ error: 'Internal Server Error' });
+        res.status(500).json({ error: '服务器网络错误' });
     }
 };
 

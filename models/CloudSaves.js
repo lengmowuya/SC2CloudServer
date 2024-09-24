@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 
 const cloudSaveSchema = new mongoose.Schema({
-    fileContent: String,
+    fileContent: { type: mongoose.Schema.Types.ObjectId, ref: 'SaveFile' },
     contentType: { type: String, default: 'SC2Bank' },
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     directory: {
@@ -13,7 +13,11 @@ const cloudSaveSchema = new mongoose.Schema({
     fileName: String,
     fileSize: Number,
     fileSpace: Number,
-    fileModifiedTime: Date
+    fileModifiedTime: Date,
+    updatedAt: {
+        type: Date,
+        default: Date.now
+    }
 });
 
 const CloudSave = mongoose.model('CloudSave', cloudSaveSchema);
